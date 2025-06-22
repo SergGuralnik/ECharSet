@@ -23,7 +23,7 @@ Uses
 
 {$R *.res}
 
-Function GetFileCharSet(AFileName : String; Var AEncoding : TEncoding; Var ABOM : Boolean; Var AResult : Byte) : Boolean;
+Function GetFileCharSet(AFileName : String; Var ACodePage : Cardinal; Var ABOM : Boolean; Var AResult : Byte) : Boolean;
 
 Var
   LR : IDetectionResult;
@@ -57,8 +57,8 @@ Begin
     AResult  := 3;
     Exit
   End;
-  AEncoding  := LR.Detected.Encoding;
-  ABOM       := (AEncoding.CodePage = 65001) And (AB[0] = $EF) And (AB[1] = $BB) And (AB[2] = $BF);
+  ACodePage  := LR.Detected.Encoding.CodePage;
+  ABOM       := (ACodePage = 65001) And (AB[0] = $EF) And (AB[1] = $BB) And (AB[2] = $BF);
   Result     := True
 End;
 
