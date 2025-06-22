@@ -23,7 +23,7 @@ Uses
 
 {$R *.res}
 
-Function GetFileCharSet(AFileName : String; Var ACodePage : Cardinal; Var ABOM : Boolean; Var AResult : Byte) : Boolean;
+Function GetFileCharSet(AFileName : PChar; Var ACodePage : Integer; Var ABOM : Boolean; Var AResult : Byte) : Boolean; StdCall;
 
 Var
   LR : IDetectionResult;
