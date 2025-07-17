@@ -50,8 +50,11 @@ Begin
     Read(AB, 3);
     Position := 0
   End;
-  LR         := TCharSetEnigma.DetectFromStream(FS);
-  FreeAndNil(FS);
+  Try
+    LR       := TCharSetEnigma.DetectFromStream(FS);
+  Finally
+    FreeAndNil(FS);
+  End;
   If Not Assigned(LR.Detected) Then
   Begin
     AResult  := 3;
